@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+                name="loginActivity"
+                type="com.example.conct_music.view.login.LoginActivity"/>
+
+        <variable
+                name="viewModel"
+                type="com.example.conct_music.view.login.LoginViewModel"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.login.LoginActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent=".04"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_bootom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent=".95"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".08"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".92"/>
+
+        <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="0dp"
+                android:layout_height="65dp"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guideline_top"/>
+
+        <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/app_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_logo"/>
+
+
+        <TextView
+                android:id="@+id/tv_title_log_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/login_title_access"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/guideline_star"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:theme="@style/TextLabel"
+                android:id="@+id/til_user"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="@+id/guideline_star"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_log_in">
+
+            <EditText
+                    android:id="@+id/et_login_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:inputType="text"
+                    android:paddingStart="7dp"
+                    android:paddingEnd="0dp"
+                    android:textColorHint="@color/colorFaintGray"
+                    android:hint="@string/login_user"
+                    android:text="@={viewModel.user}"
+                    android:textSize="14sp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:theme="@style/TextLabel"
+                android:id="@+id/til_pwd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="5dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorFaintGray"
+                app:layout_constraintStart_toStartOf="@+id/guideline_star"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toBottomOf="@+id/til_user">
+
+            <EditText
+                    android:id="@+id/et_login_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:hint="@string/login_pwd"
+                    android:textColorHint="@color/colorAccent"
+                    android:paddingStart="7dp"
+                    android:paddingEnd="0dp"
+                    android:inputType="textPassword"
+                    android:text="@={viewModel.pwd}"
+                    android:textSize="14sp"/>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+                android:id="@+id/btn_login_start_session"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/login_start_session"
+                android:background="@drawable/round_button"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/colorWhite"
+                android:onClick="@{() -> viewModel.startSession()}"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_star"
+                app:layout_constraintTop_toBottomOf="@+id/til_pwd"/>
+
+
+        <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:visibility="@{viewModel.isProgressShow.get() ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_star"
+                app:layout_constraintTop_toBottomOf="@+id/btn_login_start_session"
+                app:layout_constraintBottom_toTopOf="@+id/tv_login_title_not_account"/>
+
+
+        <TextView
+                android:id="@+id/tv_login_title_not_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_not_account"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tv_login_sign_in"/>
+
+
+        <Button
+                android:id="@+id/tv_login_sign_in"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:text="@string/login_sign_in"
+                android:textStyle="bold"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:paddingBottom="8dp"
+                android:onClick="@{() -> loginActivity.registerUser()}"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_star"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

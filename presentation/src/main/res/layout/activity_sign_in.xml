@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable name="signin"
+                  type="com.example.conct_music.view.signin.SignInActivity"/>
+
+        <variable name="viewModel"
+                  type="com.example.conct_music.view.signin.SignInViewModel"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.signin.SignInActivity">
+
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent=".03"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_bootom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent=".985"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".08"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".92"/>
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent=".5"/>
+
+
+        <ImageView
+                android:id="@+id/iv_signin_logo"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/app_name"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="fitStart"
+                app:layout_constraintStart_toStartOf="@+id/guideline_star"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toBottomOf="@+id/guideline_top"/>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:theme="@style/TextLabel"
+                android:id="@+id/til_user"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="15dp"
+                app:helperText="@string/required"
+                app:layout_constraintStart_toStartOf="@+id/guideline_star"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toBottomOf="@+id/iv_signin_logo">
+
+            <EditText
+                    android:id="@+id/et_signin_user"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:inputType="text"
+                    android:paddingStart="7dp"
+                    android:paddingEnd="0dp"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorFaintGray"
+                    android:hint="@string/login_user"
+                    android:text="@={viewModel.user}"
+                    android:textSize="14sp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:theme="@style/TextLabel"
+                android:id="@+id/til_pwd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="8dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#FFF"
+                app:helperText="@string/signin_pwd_helper"
+                app:layout_constraintStart_toStartOf="@+id/guideline_star"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toBottomOf="@+id/til_user">
+
+            <EditText
+                    android:id="@+id/et_signin_pwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:hint="@string/login_pwd"
+                    android:textColorHint="@color/colorAccent"
+                    android:paddingStart="7dp"
+                    android:paddingEnd="0dp"
+                    android:textColor="@color/colorAccent"
+                    android:inputType="textPassword"
+                    android:text="@={viewModel.pwd}"
+                    android:textSize="14sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:theme="@style/TextLabel"
+                android:id="@+id/til_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="10dp"
+                app:helperText="@string/required"
+                app:layout_constraintStart_toStartOf="@+id/guideline_star"
+                app:layout_constraintEnd_toEndOf="@+id/guideline_end"
+                app:layout_constraintTop_toBottomOf="@+id/til_pwd">
+
+            <EditText
+                    android:id="@+id/et_signin_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="7dp"
+                    android:paddingEnd="0dp"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHint="@color/colorFaintGray"
+                    android:hint="@string/signin_email"
+                    android:text="@={viewModel.email}"
+                    android:textSize="14sp"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+                android:id="@+id/btn_login_start_session"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/signin_register"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/round_button"
+                android:onClick="@{() -> viewModel.registerUser()}"
+                app:layout_constraintBottom_toBottomOf="@+id/guideline_bootom"
+                app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_star"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

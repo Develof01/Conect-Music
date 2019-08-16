@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">Conct-Music</string>
+
+    <!-- INTRO ACTIVITY -->
+    <string name="intro_powered_by">Powered by Omar Flores</string>
+
+    <!-- LOGIN ACTIVITY -->
+    <string name="login_title_access">Inicia sesión para acceder</string>
+    <string name="login_user">Usuario</string>
+    <string name="login_pwd">Contraseña</string>
+    <string name="login_start_session">Iniciar</string>
+    <string name="login_not_account">¿No tienes cuenta?</string>
+    <string name="login_sign_in">Registrate</string>
+
+
+    <!-- SIGNIN ACTIVITY -->
+    <string name="signin_title_access">Registrate para acceder</string>
+    <string name="signin_email">Correo</string>
+    <string name="signin_name">Nombre</string>
+    <string name="signin_register">Registrar</string>
+    <string name="signin_pwd_helper">Debe contener un dígito, debe contener un caracter especial (@, #, $) y al menos 4
+        caracteres. (*Requerido)
+    </string>
+    <string name="signin_message">Información de registro</string>
+    <string name="signin_message_user_created">Usuario registrado con exito</string>
+    <string name="signin_message_user_error">Error al registrar el usuario</string>
+
+    <!-- DASHBOARD MENU -->
+    <string name="menu_search">Buscar</string>
+    <string name="menu_favorites">Favoritos</string>
+
+
+    <!-- SEARCH SINGERS FRAGMENT -->
+    <string name="singers_title">Lista de Reproducción</string>
+    <string name="singers_hint_search">Buscar Por Artista</string>
+    <string name="singers_title_empty">Sin Lista de Reproducción</string>
+    <string name="singers_message_empty">Busca un Artista para empezar a escuchar musica</string>
+    <string name="singers_track_created">Canción guardada en favoritos</string>
+
+
+    <!-- FAVORITES SINGERS FRAGMENT -->
+    <string name="favorite_title">Pistas Favoritas</string>
+    <string name="singers_track_deleted">Canción eliminada de favoritos</string>
+
+
+    <!-- ERROR -->
+    <string name="login_user_empty">Ingresa tu usuario</string>
+    <string name="login_pwd_empty">Ingresa tu contraseña</string>
+    <string name="login_error">Error al iniciar sesión</string>
+    <string name="invalid_user">Usuario invalido</string>
+    <string name="invalid_pwd">Contraseña invalida</string>
+    <string name="invalid_email">Correo invalido</string>
+    <string name="user_not_found">Usuario o Contraseña incorrectos</string>
+
+
+    <!-- GENERAL -->
+    <string name="accept">Aceptar</string>
+    <string name="ok">OK</string>
+    <string name="required">*Requerido</string>
+    <string name="cancel">Cancelar</string>
+
+
+</resources>
