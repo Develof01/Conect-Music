@@ -1,6 +1,5 @@
 package com.example.conct_music.adapters
 
-import android.media.AudioManager
 import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.View
@@ -9,27 +8,20 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.conct_music.R
 import com.example.conct_music.databinding.AdapterTrackMusicBinding
-import com.example.conct_music.utils.setImageUrl
+import com.example.conct_music.extensions.setImageUrl
 import com.example.conct_music.view.favorites.FavoritesFragment
 import com.example.domian.entities.TrackInformation
 import kotlinx.android.synthetic.main.adapter_track_music.view.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class FavoriteAdapter(val context: FavoritesFragment, private val mInflater: LayoutInflater = LayoutInflater.from(context.context)) :
-    RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder>(), MediaPlayer.OnPreparedListener,
-    MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpdateListener {
+    RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder>() {
 
     lateinit var binding: AdapterTrackMusicBinding
 
     private var tracks: List<TrackInformation>? = mutableListOf()
 
-    private var mediaPlayer: MediaPlayer? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteHolder {
         binding = DataBindingUtil.inflate(mInflater, R.layout.adapter_track_music, parent, false)
-       // binding.f = this
         return FavoriteHolder(binding.root)
     }
 
@@ -53,47 +45,14 @@ class FavoriteAdapter(val context: FavoritesFragment, private val mInflater: Lay
         }
 
         holder.itemView.cv_artist.setOnClickListener {
-            startSong(track.previewUrl!!)
+            (context).startTrack(track.previewUrl!!)
+            (context).getTrackPosition(position)
         }
     }
 
-
-    private fun startSong(urlSong: String) {
-
-        if (mediaPlayer?.isPlaying == true) mediaPlayer?.stop()
-
-        runBlocking {
-            GlobalScope.launch {
-                mediaPlayer = MediaPlayer().apply {
-                    setOnPreparedListener(this@FavoriteAdapter)
-                    setOnCompletionListener(this@FavoriteAdapter)
-                    setOnBufferingUpdateListener(this@FavoriteAdapter)
-                    setAudioStreamType(AudioManager.STREAM_MUSIC)
-                    setDataSource(urlSong)
-                    prepare()
-                    start()
-                }
-            }
-        }
-    }
-
-
-    internal fun setTracksMusicInfo(tracks: List<TrackInformation>) {
+    internal fun setTracksMusicInfo(tracks: List<TrackInformation>?) {
         this.tracks = tracks
         notifyDataSetChanged()
-    }
-
-
-    override fun onPrepared(p0: MediaPlayer?) {
-
-    }
-
-    override fun onCompletion(p0: MediaPlayer?) {
-
-    }
-
-    override fun onBufferingUpdate(p0: MediaPlayer?, p1: Int) {
-
     }
 
 

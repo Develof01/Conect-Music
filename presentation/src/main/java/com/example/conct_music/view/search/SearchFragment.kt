@@ -16,13 +16,13 @@ import com.example.conct_music.R
 import com.example.conct_music.adapters.TrackMusicAdapter
 import com.example.conct_music.databinding.FragmentSearchBinding
 import com.example.domian.entities.TrackInformation
-import com.example.domian.entities.User
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.getKoin
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
+import com.example.conct_music.view.dashboard.DashboardActivity
+
 
 class SearchFragment : Fragment(), SearchContract.View, FloatingSearchView.OnSearchListener {
 
@@ -60,6 +60,7 @@ class SearchFragment : Fragment(), SearchContract.View, FloatingSearchView.OnSea
         searchViewModel.tracks?.observe(this, Observer<List<TrackInformation>> {
             if (it.isNotEmpty()) {
                 searchViewModel.isEmptyState.set(false)
+                (activity as DashboardActivity).getListData(it)
             } else {
                 searchViewModel.isEmptyState.set(true)
             }
@@ -67,8 +68,8 @@ class SearchFragment : Fragment(), SearchContract.View, FloatingSearchView.OnSea
             adapter.setTracksMusicInfo(it)
         })
 
-        binding.svSinger.setOnSearchListener(this)
 
+        binding.svSinger.setOnSearchListener(this)
 
         searchViewModel.isUserTrackCreated.observe(this, Observer<Boolean> {
             if (it) {
@@ -87,6 +88,13 @@ class SearchFragment : Fragment(), SearchContract.View, FloatingSearchView.OnSea
 
     override fun onSuggestionClicked(searchSuggestion: SearchSuggestion?) {}
 
+    override fun startTrack(urlTrack: String) {
+        (activity as DashboardActivity).startSelectedTrack(urlTrack)
+    }
+
+    override fun getTrackPosition(position: Int) {
+        (activity as DashboardActivity).getTrackPosition(position)
+    }
 
     override fun initDependences() = loadFeatures
 

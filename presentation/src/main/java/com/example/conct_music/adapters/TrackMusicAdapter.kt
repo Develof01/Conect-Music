@@ -1,6 +1,5 @@
 package com.example.conct_music.adapters
 
-import android.media.AudioManager
 import android.media.MediaPlayer
 import android.view.LayoutInflater
 import android.view.View
@@ -9,26 +8,18 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.conct_music.R
 import com.example.conct_music.databinding.AdapterTrackMusicBinding
-import com.example.conct_music.utils.setImageUrl
+import com.example.conct_music.extensions.setImageUrlCoil
 import com.example.domian.entities.TrackInformation
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.android.synthetic.main.adapter_track_music.view.*
 import com.example.conct_music.view.search.SearchFragment
-import com.example.domian.entities.User
 
 
 class TrackMusicAdapter(val context: SearchFragment, private val mInflater: LayoutInflater = LayoutInflater.from(context.context)) :
-    RecyclerView.Adapter<TrackMusicAdapter.TrackMusicHolder>(), MediaPlayer.OnPreparedListener,
-    MediaPlayer.OnCompletionListener, MediaPlayer.OnBufferingUpdateListener {
+    RecyclerView.Adapter<TrackMusicAdapter.TrackMusicHolder>() {
 
     lateinit var binding: AdapterTrackMusicBinding
 
     private var tracks: List<TrackInformation>? = mutableListOf()
-
-    private var mediaPlayer: MediaPlayer? = null
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackMusicHolder {
@@ -47,48 +38,17 @@ class TrackMusicAdapter(val context: SearchFragment, private val mInflater: Layo
         holder.itemView.tv_track_name.text = track.trackName
         holder.itemView.tv_artist_name.text = track.artistName
         holder.itemView.tv_collection_name.text = track.collectionName
-        holder.itemView.iv_track.setImageUrl((track.artworkUrl100))
+        holder.itemView.iv_track.setImageUrlCoil(track.artworkUrl100)
 
         holder.itemView.cv_artist.setOnClickListener {
-            startSong(track.previewUrl!!)
+            (context).startTrack(track.previewUrl!!)
+            (context).getTrackPosition(position)
         }
 
 
         holder.itemView.iv_favorite_track.setOnClickListener{
             (context).searchViewModel.createFavoriteTrack(track)
         }
-    }
-
-    private fun startSong(urlSong: String) {
-
-        if (mediaPlayer?.isPlaying == true) mediaPlayer?.stop()
-
-        runBlocking {
-            GlobalScope.launch {
-                mediaPlayer = MediaPlayer().apply {
-                    setOnPreparedListener(this@TrackMusicAdapter)
-                    setOnCompletionListener(this@TrackMusicAdapter)
-                    setOnBufferingUpdateListener(this@TrackMusicAdapter)
-                    setAudioStreamType(AudioManager.STREAM_MUSIC)
-                    setDataSource(urlSong)
-                    prepare()
-                    start()
-                }
-            }
-        }
-    }
-
-
-    override fun onPrepared(p0: MediaPlayer?) {
-
-    }
-
-    override fun onCompletion(p0: MediaPlayer?) {
-
-    }
-
-    override fun onBufferingUpdate(p0: MediaPlayer?, p1: Int) {
-
     }
 
     internal fun setTracksMusicInfo(tracks: List<TrackInformation>) {

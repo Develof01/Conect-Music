@@ -6,6 +6,8 @@ interface SearchContract {
 
     interface View {
         fun initDependences()
+        fun startTrack(urlTrack: String)
+        fun getTrackPosition(position: Int)
     }
 
     interface ViewModel {

@@ -13,10 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.conct_music.R
 import com.example.conct_music.adapters.FavoriteAdapter
 import com.example.conct_music.databinding.FragmentFavoritesBinding
-import com.example.domian.entities.TrackInformation
-import com.example.domian.entities.User
+import com.example.conct_music.view.dashboard.DashboardActivity
 import org.koin.android.ext.android.getKoin
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 
@@ -59,18 +57,27 @@ class FavoritesFragment : Fragment(), FavoriteContract.View {
         binding.rvMusicTracks.adapter = adapter
 
 
-        viewModel.tracks?.observe(this, Observer<List<TrackInformation>> {
+        viewModel.tracks?.observe(this, Observer {
             viewModel.isProgressShow.set(false)
+            (activity as DashboardActivity).getListData(it)
             adapter.setTracksMusicInfo(it)
         })
 
         viewModel.isTrackDelete.observe(this, Observer<Boolean> {
             if (it) {
                 Toast.makeText(activity, resources.getString(R.string.singers_track_deleted), Toast.LENGTH_LONG).show()
-                viewModel.getFavoriteTracks()  //TODO CAMBIAR HARCODE
             }
         })
 
+
+    }
+
+    override fun startTrack(urlTrack: String) {
+        (activity as DashboardActivity).startSelectedTrack(urlTrack)
+    }
+
+    override fun getTrackPosition(position: Int) {
+        (activity as DashboardActivity).getTrackPosition(position)
     }
 
 

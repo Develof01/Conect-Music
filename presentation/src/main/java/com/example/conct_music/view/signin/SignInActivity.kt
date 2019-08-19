@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.conct_music.R
 import com.example.conct_music.databinding.ActivitySignInBinding
-import com.example.conct_music.utils.DisplayMessageDialog
+import com.example.conct_music.extensions.displayMessage
 import org.koin.android.ext.android.getKoin
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
@@ -49,15 +49,11 @@ class SignInActivity : AppCompatActivity(), SignInContract.View {
                 Toast.makeText(this@SignInActivity, resources.getString(R.string.signin_message_user_created), Toast.LENGTH_SHORT).show()
                 this@SignInActivity.finish()
             } else {
-                displayMessage(resources.getString(R.string.signin_message_user_error))
+                this.displayMessage(resources.getString(R.string.signin_message), resources.getString(R.string.signin_message_user_error))
             }
         })
 
     }
-
-    private fun displayMessage(message: String) = DisplayMessageDialog(this@SignInActivity).displayMessage(
-        this@SignInActivity.resources.getString(R.string.signin_message), message)
-
 
     override fun startActivity(_class: Class<*>) {
         startActivity(Intent(this@SignInActivity, _class))

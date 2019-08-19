@@ -5,9 +5,9 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.conct_music.R
-import com.example.conct_music.utils.validateEmailFiled
-import com.example.conct_music.utils.validateEmptyField
-import com.example.conct_music.utils.validatePwdField
+import com.example.conct_music.extensions.validateEmailFiled
+import com.example.conct_music.extensions.validateEmptyField
+import com.example.conct_music.extensions.validatePwdField
 import com.example.domian.usecases.signin.RegisterValidation
 
 class SignInViewModel(val context: Context, private val registerValidation: RegisterValidation) : ViewModel() {

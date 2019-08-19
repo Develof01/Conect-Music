@@ -23,6 +23,8 @@ buildscript {
         koinViewModel = "org.koin:koin-androidx-viewmodel:$koin_version"
         koinScope = "org.koin:koin-androidx-scope:$koin_version"
         koin = "org.koin:koin-androidx-ext:$koin_version"
+        lifeCycleExxtension = "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+        lifeCycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
     }
 

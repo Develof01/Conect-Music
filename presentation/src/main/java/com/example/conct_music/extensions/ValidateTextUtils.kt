@@ -1,7 +1,8 @@
-package com.example.conct_music.utils
+package com.example.conct_music.extensions
 
 import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
+import com.example.conct_music.utils.Const
 
 
 fun validateEmptyField(

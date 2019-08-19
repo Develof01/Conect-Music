@@ -1,5 +1,6 @@
 package com.example.data.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.domian.entities.TrackInformation
 
@@ -13,7 +14,7 @@ interface TrackDao {
     fun insertUserTrack(track: TrackInformation): Long
 
     @Query("SELECT * FROM UserTracks WHERE ID_USER = :userId ")
-    fun getUserTracks(userId: Int?): List<TrackInformation>?
+    fun getUserTracks(userId: Int?): LiveData<List<TrackInformation>?>
 
     @Delete
     fun delete(userTrack: TrackInformation?)

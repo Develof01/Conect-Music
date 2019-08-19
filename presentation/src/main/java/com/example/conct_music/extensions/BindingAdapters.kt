@@ -1,8 +1,9 @@
-package com.example.conct_music.utils
+package com.example.conct_music.extensions
 
 import android.R
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import coil.api.load
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -21,4 +22,12 @@ fun ImageView.setImageUrl(url: String?) {
         .load(url)
         .apply(options)
         .into(this)
+}
+
+@BindingAdapter("setImageCoil")
+fun ImageView.setImageUrlCoil(url: String?) {
+    this.load(url) {
+        crossfade(true)
+    }
+
 }

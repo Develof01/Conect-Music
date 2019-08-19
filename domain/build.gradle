@@ -1,17 +1,22 @@
-apply plugin: 'kotlin'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
-targetCompatibility = 1.8
-sourceCompatibility = 1.8
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
     testImplementation 'junit:junit:4.12'
 
-    implementation rootProject.ext.coroutinesAdapter
+    implementation rootProject.ext.room
+    implementation rootProject.ext.retrofit
+    implementation rootProject.ext.retrofitGsonConverter
     implementation rootProject.ext.coroutinesAdapter
     implementation rootProject.ext.coroutinesAndroid
 
-    implementation rootProject.ext.room
-    annotationProcessor 'androidx.room:room-compiler:2.1.0'
+    kapt "androidx.room:room-compiler:$room_version"
 }

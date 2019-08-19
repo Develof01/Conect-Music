@@ -2,6 +2,7 @@ package com.example.conct_music.application
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.conct_music.di.mAudio
 import com.example.conct_music.di.mNetworkModule
 import com.example.conct_music.di.mRoomModule
 import org.koin.android.ext.koin.androidContext
@@ -20,7 +21,7 @@ class ConectMusicApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(applicationContext)
-            loadKoinModules(listOf(mRoomModule, mNetworkModule))
+            loadKoinModules(listOf(mRoomModule, mNetworkModule, mAudio))
         }
 
     }
